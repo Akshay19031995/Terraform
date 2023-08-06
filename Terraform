@@ -1,0 +1,19 @@
+provider "aws" {
+  region = "us-west-1"  # Replace with your desired AWS region
+}
+
+resource "aws_iam_user" "example_user" {
+  name = "example-user"
+}
+
+resource "aws_iam_access_key" "example_user_key" {
+  user = aws_iam_user.example_user.name
+}
+
+output "access_key_id" {
+  value = aws_iam_access_key.example_user_key.id
+}
+
+output "secret_access_key" {
+  value = aws_iam_access_key.example_user_key.secret
+}
